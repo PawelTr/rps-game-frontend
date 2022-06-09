@@ -1,0 +1,54 @@
+.room-title {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.lost {
+  opacity: 0.5;
+}
+
+.shake {
+  animation: linear 0.5s shake infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: rotateZ(-10deg);
+  }
+  50% {
+    transform: rotateZ(10deg);
+  }
+}
+
+.user-card  {
+  text-align: center;
+  width: 50%;
+
+  &--current {
+    width: 100%;
+  }
+
+  &.even:first-child {
+    width: 100%;
+  }
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+.winner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="room-title">{{ roomName }}</div>
+  <div *ngIf="!winner" class="users">
+    <ng-container *ngFor="let user of roomUsers">
+      <div *ngIf="user?.userName !== currentUser?.userName"
+           class="user-card"
+           [class.even]="roomUsers.length % 2 === 0"
+           [class.lost] = user?.isLost>
+        {{ user.userName }} <br>
+        <img *ngIf="user?.sign"
+             src="assets/img/{{user.sign}}.svg"
+             height="96px"
+             width="96px">
+        <img *ngIf="!user?.sign"
+             [class.shake]="user?.isReady"
+             src="assets/img/rock.svg"
+             height="96px"
+             width="96px">
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="winner" class="winner">
+    WINNER
+    {{ winner.userName }} <br>
+    <img *ngIf="winner?.sign"
+         src="assets/img/{{winner.sign}}.svg"
+         height="96px"
+         width="96px">
+    <button *ngIf="currentUser.isAdmin" (click)="playAgain()">Play again</button>
+  </div>
+  <div class="user-card user-card--current"
+       [class.lost] = currentUser?.isLost>
+    <div>
+      {{ currentUser?.userName }} <br>
+      <img *ngIf="currentUser?.sign"
+           src="assets/img/{{currentUser.sign}}.svg"
+           height="96px"
+           width="96px">
+      <img *ngIf="!currentUser?.sign"
+           [class.shake]="currentUser?.isReady"
+           src="assets/img/rock.svg"
+           height="96px"
+           width="96px">
+    </div>
+    <button *ngIf="!isEverybodyReady" (click)="toggleReady()">{{ currentUser?.isReady ? 'Not ready' : 'Ready'  }}</button>
+    <div *ngIf="isEverybodyReady && !winner && !currentUser.isLost">
+      <button (click)="setSign(signEnum.ROCK)">Rock</button>
+      <button (click)="setSign(signEnum.PAPER)">Paper</button>
+      <button (click)="setSign(signEnum.SCISSORS)">Scissors</button>
+    </div>
+  </div>
+</div>
+

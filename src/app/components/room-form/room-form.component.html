@@ -1,0 +1,6 @@
+<form #roomForm="ngForm" (ngSubmit)="onSubmit(roomForm)">
+  <input name="userName" type="text" placeholder="userName" ngModel required/>
+  <input name="roomName" type="text" placeholder="roomName" ngModel required/>
+  <button type="submit">{{ buttonText }}</button>
+</form>
+
